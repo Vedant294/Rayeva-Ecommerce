@@ -4,7 +4,9 @@ AI-powered platform for sustainable commerce with automated product tagging, B2B
 
 ## 🎥 Demo Video
 
-[Watch the demo video on YouTube](https://youtube.com/your-video-link-here)
+
+https://github.com/user-attachments/assets/9925de93-c92d-4f86-8f1b-05aeebfc0090
+
 
 *If video is private, upload to Google Drive and share with link*
 
