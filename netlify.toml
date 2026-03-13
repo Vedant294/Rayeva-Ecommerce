@@ -1,12 +1,6 @@
 [build]
-  base = "frontend"
-  publish = "build"
-  command = "npm run build"
+  publish = "frontend/build"
+  command = "cd frontend && npm run build"
 
 [build.environment]
   NODE_VERSION = "18"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
