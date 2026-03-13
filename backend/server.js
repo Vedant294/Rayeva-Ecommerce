@@ -31,9 +31,10 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('Connected to MongoDB');
     const { seedDatabase } = require('./services/dbService');
-    seedDatabase();
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+    seedDatabase().then(() => {
+      app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+      });
     });
   })
   .catch((err) => console.error('MongoDB connection error:', err));
