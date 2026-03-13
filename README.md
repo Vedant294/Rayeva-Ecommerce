@@ -2,6 +2,12 @@
 
 AI-powered platform for sustainable commerce with automated product tagging, B2B proposals, and impact reporting.
 
+## 🌐 Live Demo
+
+**Frontend:** https://Vedant294.github.io/Rayeva-Ecommerce
+
+*Note: Backend API requires separate deployment (MongoDB connection needed)*
+
 ## 🎥 Demo Video
 
 
@@ -19,22 +25,26 @@ npm install
 node seed.js
 npm run dev
 
-# Frontend
+# Frontend (Local Development)
 cd frontend
 npm install
 npm start
+
+# Frontend (Production Build)
+cd frontend
+npm run build
 ```
 
 ## 📱 Pages
 
 | Page | URL |
 |------|-----|
-| Home | http://localhost:3000 |
-| Products | http://localhost:3000/products |
-| Add Product | http://localhost:3000/add-product |
-| B2B Proposals | http://localhost:3000/b2b |
-| Impact Dashboard | http://localhost:3000/impact |
-| Data Viewer | http://localhost:3000/data |
+| Home | https://Vedant294.github.io/Rayeva-Ecommerce |
+| Products | https://Vedant294.github.io/Rayeva-Ecommerce/products |
+| Add Product | https://Vedant294.github.io/Rayeva-Ecommerce/add-product |
+| B2B Proposals | https://Vedant294.github.io/Rayeva-Ecommerce/b2b |
+| Impact Dashboard | https://Vedant294.github.io/Rayeva-Ecommerce/impact |
+| Data Viewer | https://Vedant294.github.io/Rayeva-Ecommerce/data |
 
 ## ✅ Modules Implemented
 
