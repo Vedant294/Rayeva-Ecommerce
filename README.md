@@ -4,7 +4,7 @@ AI-powered platform for sustainable commerce with automated product tagging, B2B
 
 ## 🌐 Live Demo
 
-**Frontend:** https://Vedant294.github.io/Rayeva-Ecommerce
+**Frontend:** https://your-netlify-site.netlify.app
 
 *Note: Backend API requires separate deployment (MongoDB connection needed)*
 
@@ -39,12 +39,12 @@ npm run build
 
 | Page | URL |
 |------|-----|
-| Home | https://Vedant294.github.io/Rayeva-Ecommerce |
-| Products | https://Vedant294.github.io/Rayeva-Ecommerce/products |
-| Add Product | https://Vedant294.github.io/Rayeva-Ecommerce/add-product |
-| B2B Proposals | https://Vedant294.github.io/Rayeva-Ecommerce/b2b |
-| Impact Dashboard | https://Vedant294.github.io/Rayeva-Ecommerce/impact |
-| Data Viewer | https://Vedant294.github.io/Rayeva-Ecommerce/data |
+| Home | https://your-netlify-site.netlify.app |
+| Products | https://your-netlify-site.netlify.app/products |
+| Add Product | https://your-netlify-site.netlify.app/add-product |
+| B2B Proposals | https://your-netlify-site.netlify.app/b2b |
+| Impact Dashboard | https://your-netlify-site.netlify.app/impact |
+| Data Viewer | https://your-netlify-site.netlify.app/data |
 
 ## ✅ Modules Implemented
 
