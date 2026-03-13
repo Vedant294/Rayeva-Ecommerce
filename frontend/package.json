@@ -2,7 +2,6 @@
   "name": "rayeva-ai-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Vedant294.github.io/Rayeva-Ecommerce",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
