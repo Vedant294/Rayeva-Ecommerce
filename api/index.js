@@ -82,5 +82,9 @@ if (require.main === module) {
   });
 }
 
-// Export for Vercel
-module.exports = app;
+// Export for Vercel serverless function
+module.exports = (req, res) => {
+  return new Promise((resolve, reject) => {
+    app(req, res, () => resolve());
+  });
+};
