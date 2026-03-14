@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_BASE_URL = '/api';
+// API configuration that works for both local dev and Vercel production
+const API_BASE_URL = process.env.REACT_APP_API_URL || '/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -8,6 +9,21 @@ const api = axios.create({
     'Content-Type': 'application/json'
   }
 });
+
+// Request interceptor for debugging
+api.interceptors.request.use(config => {
+  console.log('API Request:', config.url);
+  return config;
+});
+
+// Response error handling
+api.interceptors.response.use(
+  response => response,
+  error => {
+    console.error('API Error:', error.response?.data || error.message);
+    return Promise.reject(error);
+  }
+);
 
 export const productApi = {
   getAll: () => api.get('/products'),
