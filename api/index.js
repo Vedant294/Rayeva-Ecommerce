@@ -11,6 +11,7 @@ const aiRoutes = require('./routes/aiRoutes');
 
 const app = express();
 
+// Middleware
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
     ? /https:\/\/(.+)\.vercel\.app$/  // Allow all Vercel domains dynamically
@@ -19,26 +20,10 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Health check
-app.get('/', (req, res) => {
-  res.json({ message: 'Rayeva AI Sustainable Commerce Platform API', status: 'ok' });
-});
-
-// API Routes
-app.use('/api/products', productRoutes);
-app.use('/api/orders', orderRoutes);
-app.use('/api/b2b', b2bRoutes);
-app.use('/api/impact', impactRoutes);
-app.use('/api/ai', aiRoutes);
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error('Error:', err);
-  res.status(500).json({ error: err.message });
-});
-
+// Database connection flag
 let dbConnected = false;
 
+// Database connection logic
 async function connectDB() {
   if (!dbConnected && process.env.MONGODB_URI) {
     try {
@@ -60,13 +45,42 @@ async function connectDB() {
   }
 }
 
-// Export for Vercel serverless function
-module.exports = async (req, res) => {
-  try {
-    await connectDB();
-    app(req, res);
-  } catch (error) {
-    console.error('Request error:', error);
-    res.status(500).json({ error: error.message });
-  }
-};
+// Connection middleware - runs on every request
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
+
+// Health check endpoint
+app.get('/', (req, res) => {
+  res.json({ message: 'Rayeva AI Sustainable Commerce Platform API', status: 'ok' });
+});
+
+// API Routes
+app.use('/products', productRoutes);
+app.use('/orders', orderRoutes);
+app.use('/b2b', b2bRoutes);
+app.use('/impact', impactRoutes);
+app.use('/ai', aiRoutes);
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  res.status(500).json({ error: err.message });
+});
+
+// Handle 404
+app.use((req, res) => {
+  res.status(404).json({ error: 'Route not found', path: req.path });
+});
+
+// For local development
+if (require.main === module) {
+  const PORT = process.env.PORT || 3001;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+// Export for Vercel
+module.exports = app;
