@@ -13,11 +13,9 @@ const app = express();
 
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? [
-        'https://rayeva-ved3.vercel.app',
-        /https:\/\/(.+)\.vercel\.app$/  // Allow all Vercel preview/prod domains
-      ]
-    : 'http://localhost:3000'
+    ? /https:\/\/(.+)\.vercel\.app$/  // Allow all Vercel domains dynamically
+    : 'http://localhost:3000',
+  credentials: true
 }));
 app.use(express.json());
 
