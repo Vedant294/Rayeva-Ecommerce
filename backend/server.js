@@ -27,14 +27,22 @@ app.use('/api/ai', aiRoutes);
 
 const PORT = process.env.PORT || 5000;
 
-mongoose.connect(process.env.MONGODB_URI)
+const { connectDB, seedDatabase } = require('./services/dbService');
+
+connectDB()
   .then(() => {
     console.log('Connected to MongoDB');
-    const { seedDatabase } = require('./services/dbService');
-    seedDatabase().then(() => {
-      app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-      });
+    return seedDatabase();
+  })
+  .then(() => {
+    console.log('Database seeding completed');
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
     });
   })
-  .catch((err) => console.error('MongoDB connection error:', err));
+  .catch((err) => {
+    console.error('Connection/seed error:', err);
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  });

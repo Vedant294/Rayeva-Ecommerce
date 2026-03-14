@@ -3,6 +3,17 @@ const Order = require('../models/Order');
 const B2BProposal = require('../models/B2BProposal');
 const ImpactReport = require('../models/ImpactReport');
 const AILog = require('../models/AILog');
+const mongoose = require('mongoose');
+
+let isConnected = false;
+
+async function connectDB() {
+  if (!isConnected) {
+    await mongoose.connect(process.env.MONGODB_URI);
+    isConnected = true;
+    console.log('Connected to MongoDB');
+  }
+}
 
 const seedData = [
   {
@@ -132,6 +143,8 @@ async function seedDatabase() {
   if (count === 0) {
     await Product.insertMany(seedData);
     console.log('Database seeded with sample products');
+  } else {
+    console.log(`Database already has ${count} products`);
   }
 }
 
@@ -141,5 +154,6 @@ module.exports = {
   B2BProposal,
   ImpactReport,
   AILog,
+  connectDB,
   seedDatabase
 };

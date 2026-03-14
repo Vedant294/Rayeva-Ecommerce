@@ -4,7 +4,8 @@ const dbService = require('./services/dbService');
 
 async function seed() {
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
+    await dbService.connectDB();
+    console.log('Connected to MongoDB');
     
     // Clear existing products first
     await dbService.Product.deleteMany({});
@@ -18,5 +19,7 @@ async function seed() {
     process.exit(1);
   }
 }
+
+seed();
 
 seed();
